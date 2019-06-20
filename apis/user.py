@@ -19,7 +19,7 @@ class UserList(Resource):
         result = query(statement)
         return make_json(result)
     
-    @api.expect(user_model)
+    @api.expect(user_model)  # this line tells Flask that the input will be something like the user model
     def post(self):  # if they make a post request to this url, and provide a json input that matches the model, it will insert it into the database
         '''add something to the user table'''
 

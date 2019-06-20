@@ -9,8 +9,8 @@ import json
 
 def convert_dates(dic_list):
     """
-    takes in a list of dictionaries and turns date objects into strings
-    we need to do this bc python cant turn date objects into json
+    takes in a list of dictionaries and turns datetime objects into strings
+    we need to do this bc python cant turn datetime objects into json
     """
     if len(dic_list) > 0:
         dates = [k for k, v in dic_list[0].items() if isinstance(v, (datetime.datetime, datetime.date))]

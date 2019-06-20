@@ -18,7 +18,7 @@ class EventList(Resource):
         """gets every thing from the events table"""
         return make_json(query("SELECT * FROM events"))
     
-    @api.expect(event_model)
+    @api.expect(event_model)  # this line tells Flask that the input will be something like the event model
     def post(self):
         '''add something to the events table'''
         value_dictionary = request.json
