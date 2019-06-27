@@ -93,7 +93,13 @@ def make_insert_statement(table, val_dict):
     """
     query = f"INSERT INTO {table} ("
     query += ", ".join(val_dict.keys())
-    query += ") VALUES ('"
-    query += "', '".join(val_dict.values())
-    query += "')"
+    query += ") VALUES ("
+    query += ", ".join([into_string(value) for value in val_dict.values()])
+    query += ")"
     return query
+
+def into_string(thing):
+    if (isinstance(thing, int)):
+        return str(thing)
+    else:
+        return f"'{thing}'"
