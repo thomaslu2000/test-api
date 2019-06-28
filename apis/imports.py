@@ -80,7 +80,7 @@ def make_update_statement(table, val_dict, where_clause):
     and the values are the values
     """
     query = f"UPDATE {table} SET "
-    query += ", ".join([f"{key}='{value}'" for key, value in val_dict.items()])
+    query += ", ".join([f"{key}={into_string(value)}" for key, value in val_dict.items()])
     query += " WHERE " + where_clause
     return query
 
@@ -99,7 +99,11 @@ def make_insert_statement(table, val_dict):
     return query
 
 def into_string(thing):
-    if (isinstance(thing, int)):
+    """
+    this will either return the number as a string or the same string but with quotes around it
+    this is so it can fit the SQL format
+    """
+    if (isinstance(thing, (int, float))):
         return str(thing)
     else:
         return f"'{thing}'"
